@@ -6,24 +6,37 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   const handleAddMovie = (title) => {
-    // TODO: Implement adding a new movie to the list
+    setMovies([
+      ...movies,
+      { id: Date.now(), title: title, watched: false }, 
+    ]);
   };
 
   const handleToggleWatched = (id) => {
-    // TODO: Implement toggling a movie's watched status
+    setMovies(
+      movies.map((movie) =>
+        movie.id === id ? { ...movie, watched: !movie.watched } : movie
+      )
+    );
   };
 
   const handleDeleteMovie = (id) => {
-    // TODO: Implement deleting a movie from the list
+    setMovies(movies.filter((movie) => movie.id !== id));
   };
 
   return (
     <div>
       <h1>Favorite Movies</h1>
-      {/* TODO: Add AddMovieForm Component */}
-      {/* TODO: Add MovieList Component */}
+
+      <AddMovieForm onAddMovie={handleAddMovie} />
+      <MovieList
+        movies={movies}
+        onToggleWatched={handleToggleWatched}
+        onDeleteMovie={handleDeleteMovie}
+      />
     </div>
   );
 }
 
 export default App;
+
