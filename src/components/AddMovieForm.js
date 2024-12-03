@@ -4,10 +4,10 @@ export default function AddMovieForm({ onAddMovie }) {
   const [title, setTitle] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the page from refreshing
-    if (!title.trim()) return; // Prevent adding empty movies
-    onAddMovie(title); // Call the passed function with the movie title
-    setTitle(""); // Clear the input field
+    e.preventDefault(); 
+    if (!title.trim()) return; 
+    onAddMovie(title); 
+    setTitle(""); 
   };
 
   return (
